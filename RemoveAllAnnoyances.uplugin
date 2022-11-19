@@ -1,0 +1,26 @@
+{
+    "FileVersion": 3,
+    "Version": 1,
+    "VersionName": "1.0.0",
+    "SemVersion": "1.0.0",
+    "FriendlyName": "Remove All Annoyances",
+    "Description": "Removes all annoying things from the world",
+    "Category": "Modding",
+    "CreatedBy": "SpaceGameDev568",
+    "CreatedByURL": "https://github.com/SpaceGameDev568",
+    "DocsURL": "https://ficsit.app/mod/dsQRZHzWZYPQ8",
+    "MarketplaceURL": "https://ficsit.app/mod/dsQRZHzWZYPQ8",
+    "SupportURL": "",
+    "CanContainContent": true,
+    "IsBetaVersion": false,
+    "IsExperimentalVersion": false,
+    "Installed": false,
+    "AcceptsAnyRemoteVersion": false,
+    "Plugins": [
+        {
+            "Name": "SML",
+            "SemVersion": "^3.4.0",
+            "Enabled": true
+        }
+    ]
+}
