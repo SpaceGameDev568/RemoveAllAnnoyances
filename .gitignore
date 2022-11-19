@@ -1,0 +1,5 @@
+# Ignore saved build artifacts
+/Saved/*
+
+# Ignore Crypto.json because the mod doesn't use pak file encryption
+/Modding/*
