@@ -1,8 +1,8 @@
 {
     "FileVersion": 3,
     "Version": 1,
-    "VersionName": "1.1.1",
-    "SemVersion": "1.1.1",
+    "VersionName": "1.1.2",
+    "SemVersion": "1.1.2",
     "FriendlyName": "Remove All Annoyances",
     "Description": "Removes all annoying things from the world",
     "Category": "Modding",
