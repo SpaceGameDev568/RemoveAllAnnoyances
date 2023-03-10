@@ -17,11 +17,11 @@ Tired of useless talking artifacts, Manta Rays flying through your buildings, or
 
 * Gas Plants/Rocks
 
-* Hogs
+* Fluffy-Tailed Hogs
 
-* Crabs
+* Baby Crabs/Hatches
 
-* Spitters
+* Plasma Spitters
 
 * Destructible Rocks
 
@@ -29,4 +29,4 @@ Tired of useless talking artifacts, Manta Rays flying through your buildings, or
 
 Once an object is removed in a save file it's gone for good. And if you want to remove the mod at any point you can do so without issue since the mod does not modify any base game files.
 
-Need help or want to report a bug? Ping me (SpaceGameDev568 #0596) on the Satisfactory Modding Discord.
+Want to suggest a feature or report a bug? Ping me (SpaceGameDev568 #0596) on the Satisfactory Modding Discord or send and email to support@spacegamedev.com.
