@@ -1,5 +1,4 @@
-Copyright © 2023 Jesse Hodgson. All Rights Reserved.
-
+Copyright © 2023 Jesse Hodgson.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software, including without limitation the rights
