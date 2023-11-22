@@ -1,16 +1,16 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.2.0",
-	"SemVersion": "1.2.0",
+	"VersionName": "1.2.1",
+	"SemVersion": "1.2.1",
 	"FriendlyName": "Remove All Annoyances",
 	"Description": "Removes annoying things from the world.",
 	"Category": "Modding",
-	"CreatedBy": "SpaceGameDev568",
+	"CreatedBy": "SpaceGameDev",
 	"CreatedByURL": "https://github.com/SpaceGameDev568",
-	"DocsURL": "https://ficsit.app/mod/dsQRZHzWZYPQ8",
+	"DocsURL": "https://ficsit.app/mod/RemoveAllAnnoyances",
 	"MarketplaceURL": "https://ficsit.app/mod/dsQRZHzWZYPQ8",
-	"SupportURL": "https://spacegamedev.freshdesk.com",
+	"SupportURL": "https://github.com/SpaceGameDev568/RemoveAllAnnoyances/issues/new/choose",
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
@@ -18,8 +18,11 @@
 	"Plugins": [
 		{
 			"Name": "SML",
-			"SemVersion": "^3.5.1",
-			"Enabled": true
+			"SemVersion": "^3.6.0",
+			"Enabled": true,
+			"BasePlugin": false
 		}
-	]
+	],
+	"RemoteVersionRange": "",
+	"AcceptsAnyRemoteVersion": false
 }
