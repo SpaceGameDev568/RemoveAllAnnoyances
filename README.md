@@ -25,6 +25,8 @@ Tired of useless talking artifacts, Manta Rays flying through your buildings, or
 
 * Destructible Rocks
 
+* Space Giraffe-Tick-Penguin-Whale Thing
+
 <b>NOTE: All scripts are disabled by default until you enable the ones you want in the Main Menu under Mod Configs -> Remove All Annoyances</b>
 
 Once an object is removed in a save file it's gone for good. And if you want to remove the mod at any point you can do so without issue since the mod does not modify any base game files.
