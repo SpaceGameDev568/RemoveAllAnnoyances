@@ -9,12 +9,19 @@
 	"CreatedBy": "SpaceGameDev",
 	"CreatedByURL": "https://github.com/SpaceGameDev568",
 	"DocsURL": "https://ficsit.app/mod/RemoveAllAnnoyances",
-	"MarketplaceURL": "https://ficsit.app/mod/dsQRZHzWZYPQ8",
+	"MarketplaceURL": "https://ficsit.app/mod/RemoveAllAnnoyances",
 	"SupportURL": "https://github.com/SpaceGameDev568/RemoveAllAnnoyances/issues/new/choose",
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
+	"Modules": [
+	{
+		"Name": "RemoveAllAnnoyances",
+		"Type": "Runtime",
+		"LoadingPhase": "Default"
+	}
+	],
 	"Plugins": [
 		{
 			"Name": "SML",

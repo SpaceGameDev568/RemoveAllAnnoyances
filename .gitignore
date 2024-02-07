@@ -3,3 +3,7 @@
 
 # Ignore Crypto.json because the mod doesn't use pak file encryption
 /Modding/*
+
+# Exclude Binaries
+/Intermediate/*
+/Binaries/*
