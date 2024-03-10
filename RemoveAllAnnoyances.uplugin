@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.2.5",
-	"SemVersion": "1.2.5",
+	"VersionName": "1.2.6",
+	"SemVersion": "1.2.6",
 	"FriendlyName": "Remove All Annoyances",
 	"Description": "Removes annoying things from the world.",
 	"Category": "Modding",
@@ -16,11 +16,11 @@
 	"IsExperimentalVersion": false,
 	"Installed": false,
 	"Modules": [
-	{
-		"Name": "RemoveAllAnnoyances",
-		"Type": "Runtime",
-		"LoadingPhase": "Default"
-	}
+		{
+			"Name": "RemoveAllAnnoyances",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
 	],
 	"Plugins": [
 		{
