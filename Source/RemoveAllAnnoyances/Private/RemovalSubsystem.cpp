@@ -53,6 +53,7 @@ void ARemovalSubsystem::BeginPlay()
 
 	// Log the name and version of the mod
 	UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("%s"), *ModInfo.FriendlyName.Append(", " + ModInfo.Version.ToString()));
+	UE_LOG(LogRemoveAllAnnoyances, Display, TEXT("Build Date: %s %s"), ANSI_TO_TCHAR(__DATE__), ANSI_TO_TCHAR(__TIME__));
 
 	TArray<TSubclassOf<AActor>> AnnoyanceList;
 	TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList;
@@ -151,11 +152,18 @@ void ARemovalSubsystem::BeginPlay()
 	}
 	else
 	{
-		FTimerHandle MemberTimerHandle;
 
-		GetWorldTimerManager().SetTimer(MemberTimerHandle, [this, AnnoyanceList, CharacterAnnoyanceList](){RunRemover(AnnoyanceList, CharacterAnnoyanceList);}, DeletionInterval, true, DeletionInterval);
+		GetWorldTimerManager().SetTimer(MemberTimerHandle, [this, AnnoyanceList, CharacterAnnoyanceList]{RunRemover(AnnoyanceList, CharacterAnnoyanceList);}, DeletionInterval, true, DeletionInterval);
 	}
 }
+
+void ARemovalSubsystem::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EEndPlayReason::LevelTransition);
+
+	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
+}
+
 
 void ARemovalSubsystem::RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList)
 {
@@ -167,11 +175,13 @@ void ARemovalSubsystem::RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TA
 
 		if(OutActors.Num() == 0)
 		{
-			UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found none of type %s"), *CurrentActorType->GetName());
+			// Debug logging
+			// UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found none of type %s"), *CurrentActorType->GetName());
 		}
 		else
 		{
-			UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found %d of type %s"), OutActors.Num(), *CurrentActorType->GetName());
+			// Debug logging
+			// UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found %d of type %s"), OutActors.Num(), *CurrentActorType->GetName());
 
 			for (auto&  Actor: OutActors)
 			{
@@ -198,11 +208,13 @@ void ARemovalSubsystem::RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TA
 
 		if(OutActorCharacters.Num() == 0)
 		{
-			UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found none of type %s"), *CurrentCharacterType->GetName());
+			// Debug logging
+			// UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found none of type %s"), *CurrentCharacterType->GetName());
 		}
 		else
 		{
-			UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found %d of type %s"), OutCharacters.Num(), *CurrentCharacterType->GetName());
+			// Debug logging
+			// UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found %d of type %s"), OutCharacters.Num(), *CurrentCharacterType->GetName());
 
 			for (auto& Character : OutActorCharacters)
 			{

@@ -32,6 +32,7 @@ public:
 
 	float DeletionInterval;
 
+	FTimerHandle MemberTimerHandle;
 // Error Message Color
 
 	UPROPERTY(EditAnywhere)
@@ -176,4 +177,6 @@ public:
 protected:
 
 	virtual void BeginPlay() override;
+
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };

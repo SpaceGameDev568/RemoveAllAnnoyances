@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.2.6",
-	"SemVersion": "1.2.6",
+	"VersionName": "1.2.9",
+	"SemVersion": "1.2.9",
 	"FriendlyName": "Remove All Annoyances",
 	"Description": "Removes annoying things from the world.",
 	"Category": "Modding",
@@ -28,6 +28,13 @@
 			"SemVersion": "^3.7.0",
 			"Enabled": true,
 			"BasePlugin": false
+		},
+		{
+			"Name": "ModUpdateNotifier",
+			"Enabled": true,
+			"Optional": true,
+			"SemVersion": "^1.0.3"
 		}
-	]
+	],
+	"AcceptsAnyRemoteVersion": true
 }
