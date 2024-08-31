@@ -10,37 +10,37 @@ struct FRemoveAllAnnoyances_ConfigStruct {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveArtifacts{};
+    bool bShouldRemoveArtifacts{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveMantaRays{};
+    bool bShouldRemoveMantaRays{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveDeposits{};
+    bool bShouldRemoveDeposits{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveStingers{};
+    bool bShouldRemoveStingers{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveGasRocks{};
+    bool bShouldRemoveGasRocks{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveHogs{};
+    bool bShouldRemoveHogs{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveCrabs{};
+    bool bShouldRemoveCrabs{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveSpitters{};
+    bool bShouldRemoveSpitters{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveDestructibleRocks{};
+    bool bShouldRemoveDestructibleRocks{};
 
     UPROPERTY(BlueprintReadWrite)
-    bool RemoveBeans{};
+    bool bShouldRemoveBeans{};
 
     UPROPERTY(BlueprintReadWrite)
-    float DeletionInterval{};
+    float RemovalInterval{};
 
     /* Retrieves active configuration value and returns object of this struct containing it */
     static FRemoveAllAnnoyances_ConfigStruct GetActiveConfig(UObject* WorldContext) {

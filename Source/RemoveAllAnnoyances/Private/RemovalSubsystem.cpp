@@ -20,21 +20,21 @@ ARemovalSubsystem::ARemovalSubsystem()
 	}
 	else
 	{
-		myConfig = FRemoveAllAnnoyances_ConfigStruct::GetActiveConfig(GetWorld());
+		ModConfig = FRemoveAllAnnoyances_ConfigStruct::GetActiveConfig(GetWorld());
 	}
 
-	RemoveArtifacts = myConfig.RemoveArtifacts;
-	RemoveMantaRays = myConfig.RemoveMantaRays;
-	RemoveDeposits = myConfig.RemoveMantaRays;
-	RemoveStingers = myConfig.RemoveStingers;
-	RemoveGasRocks = myConfig.RemoveGasRocks;
-	RemoveHogs = myConfig.RemoveHogs;
-	RemoveCrabs = myConfig.RemoveCrabs;
-	RemoveSpitters = myConfig.RemoveSpitters;
-	RemoveDestructibleRocks = myConfig.RemoveDestructibleRocks;
-	RemoveBeans = myConfig.RemoveBeans;
+	bShouldRemoveArtifacts         = ModConfig.bShouldRemoveArtifacts;
+	bShouldRemoveMantaRays         = ModConfig.bShouldRemoveMantaRays;
+	bShouldRemoveDeposits          = ModConfig.bShouldRemoveMantaRays;
+	bShouldRemoveStingers          = ModConfig.bShouldRemoveStingers;
+	bShouldRemoveGasRocks          = ModConfig.bShouldRemoveGasRocks;
+	bShouldRemoveHogs              = ModConfig.bShouldRemoveHogs;
+	bShouldRemoveCrabs             = ModConfig.bShouldRemoveCrabs;
+	bShouldRemoveSpitters          = ModConfig.bShouldRemoveSpitters;
+	bShouldRemoveDestructibleRocks = ModConfig.bShouldRemoveDestructibleRocks;
+	bShouldRemoveBeans             = ModConfig.bShouldRemoveBeans;
 
-	DeletionInterval = myConfig.DeletionInterval;
+	RemovalInterval = ModConfig.RemovalInterval;
 }
 
 void ARemovalSubsystem::BeginPlay()
@@ -48,7 +48,6 @@ void ARemovalSubsystem::BeginPlay()
 	const UGameInstance* GameInstance = GetGameInstance();
 
 	UModLoadingLibrary *ModLoadingLibrary = GameInstance->GetSubsystem<UModLoadingLibrary>();
-
 	ModLoadingLibrary->GetLoadedModInfo("RemoveAllAnnoyances", ModInfo);
 
 	// Log the name and version of the mod
@@ -59,33 +58,33 @@ void ARemovalSubsystem::BeginPlay()
 	TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList;
 
 	// Add all annoyances to list
-	if (RemoveArtifacts)
+	if (bShouldRemoveArtifacts)
 	{
 		AnnoyanceList.Add(Wat1);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added Artifacts to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Artifacts to the list of annoyances to remove!"));
 	}
-	if(RemoveMantaRays)
+	if(bShouldRemoveMantaRays)
 	{
 		AnnoyanceList.Add(MantaRay);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added MantaRays to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added MantaRays to the list of annoyances to remove!"));
 	}
-	if (RemoveDeposits)
+	if (bShouldRemoveDeposits)
 	{
 		AnnoyanceList.Add(Deposit);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added Deposits to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Deposits to the list of annoyances to remove!"));
 	}
-	if (RemoveStingers)
+	if (bShouldRemoveStingers)
 	{
 		CharacterAnnoyanceList.Add(EliteStinger);
 		CharacterAnnoyanceList.Add(AlphaStinger);
 		CharacterAnnoyanceList.Add(ChildStinger);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added Stingers to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Stingers to the list of annoyances to remove!"));
 	}
-	if (RemoveGasRocks)
+	if (bShouldRemoveGasRocks)
 	{
 		AnnoyanceList.Add(SporeFlower);
 		AnnoyanceList.Add(GasPillar1);
@@ -94,24 +93,24 @@ void ARemovalSubsystem::BeginPlay()
 		AnnoyanceList.Add(GasPillar4);
 		AnnoyanceList.Add(GasPillar5);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added Gas Rocks to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Gas Rocks to the list of annoyances to remove!"));
 	}
-	if (RemoveHogs)
+	if (bShouldRemoveHogs)
 	{
 		CharacterAnnoyanceList.Add(AlphaHog);
 		CharacterAnnoyanceList.Add(CliffHog);
 		CharacterAnnoyanceList.Add(NuclearHog);
 		CharacterAnnoyanceList.Add(Hog);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added Hogs to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Hogs to the list of annoyances to remove!"));
 	}
-	if (RemoveCrabs)
+	if (bShouldRemoveCrabs)
 	{
 		AnnoyanceList.Add(CrabHatcher);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added Crabs to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Crabs to the list of annoyances to remove!"));
 	}
-	if (RemoveSpitters)
+	if (bShouldRemoveSpitters)
 	{
 		CharacterAnnoyanceList.Add(AquaticAlphaSpitter);
 		CharacterAnnoyanceList.Add(AquaticSpitter);
@@ -122,38 +121,32 @@ void ARemovalSubsystem::BeginPlay()
 		CharacterAnnoyanceList.Add(AlphaForestSpitter);
 		CharacterAnnoyanceList.Add(ForestSpitter);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added Spitters to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Spitters to the list of annoyances to remove!"));
 	}
-	if (RemoveDestructibleRocks)
+	if (bShouldRemoveDestructibleRocks)
 	{
 		AnnoyanceList.Add(DestructibleRock1);
 		AnnoyanceList.Add(DestructibleRock2);
 		AnnoyanceList.Add(DestructibleRockFlat);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added Destructible Rocks to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Destructible Rocks to the list of annoyances to remove!"));
 	}
-	if (RemoveBeans)
+	if (bShouldRemoveBeans)
 	{
 		CharacterAnnoyanceList.Add(SpaceGiraffe);
 
-		UE_LOG(LogRemoveAllAnnoyances, Warning, TEXT("Added Beans to the list of annoyances to remove!"));
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Beans to the list of annoyances to remove!"));
 	}
 
 	if (AnnoyanceList.Num() == 0 && CharacterAnnoyanceList.Num() == 0)
 	{
 		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("No annoyances selected!"));
 
-		APlayerController* PlayerControllerRef = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-		AFGPlayerController* VarPlayerController = Cast<AFGPlayerController>(PlayerControllerRef);
-
-		USMLRemoteCallObject *SMLRemoteCallObject = VarPlayerController->GetRemoteCallObjectOfClass<USMLRemoteCallObject>();
-
-		SMLRemoteCallObject->SendChatMessage("Remove All Annoyances: No annoyances selected! Please go to the Main Menu and select \"Mods\" from the bottom of the menu and choose \"Remove All Annoyances\". Then scroll down and select some annoyances to remove!", ErrorMessageColor);
+		Cast<AFGPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->GetRemoteCallObjectOfClass<USMLRemoteCallObject>()->SendChatMessage("Remove All Annoyances: No annoyances selected! Please go to the Main Menu and select \"Mods\" from the bottom of the menu and choose \"Remove All Annoyances\". Then scroll down and select some annoyances to remove!", ErrorMessageColor);
 	}
 	else
 	{
-
-		GetWorldTimerManager().SetTimer(MemberTimerHandle, [this, AnnoyanceList, CharacterAnnoyanceList]{RunRemover(AnnoyanceList, CharacterAnnoyanceList);}, DeletionInterval, true, DeletionInterval);
+		GetWorldTimerManager().SetTimer(MemberTimerHandle, [this, AnnoyanceList, CharacterAnnoyanceList]{RunRemover(AnnoyanceList, CharacterAnnoyanceList);}, RemovalInterval, true, RemovalInterval);
 	}
 }
 
@@ -164,7 +157,6 @@ void ARemovalSubsystem::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
 }
 
-
 void ARemovalSubsystem::RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList)
 {
 	TArray<AActor*> OutActors;
@@ -173,59 +165,36 @@ void ARemovalSubsystem::RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TA
 	{
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), CurrentActorType, OutActors);
 
-		if(OutActors.Num() == 0)
+		for (auto&  Actor: OutActors)
 		{
-			// Debug logging
-			// UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found none of type %s"), *CurrentActorType->GetName());
-		}
-		else
-		{
-			// Debug logging
-			// UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found %d of type %s"), OutActors.Num(), *CurrentActorType->GetName());
-
-			for (auto&  Actor: OutActors)
+			// Spawn reward for alien artifacts
+			if(CurrentActorType == Wat1)
 			{
-				// Spawn reward for alien artifacts
-				if(CurrentActorType == Wat1)
-				{
-					FActorSpawnParameters SpawnParams;
-					SpawnParams.Owner = this;
+				FActorSpawnParameters SpawnParams;
+				SpawnParams.Owner = this;
 
-					GetWorld()->SpawnActor<AFGItemPickup>(Reward, Actor->GetActorLocation(), Actor->GetActorRotation(), SpawnParams);
-				}
-				Actor->Destroy();
+				GetWorld()->SpawnActor<AFGItemPickup>(Reward, Actor->GetActorLocation(), Actor->GetActorRotation(), SpawnParams);
 			}
+			Actor->Destroy();
 		}
 	}
 	// Kill creatures before destroying them
 	for(auto& CurrentCharacterType : CharacterAnnoyanceList)
 	{
-
 		TArray<AFGCharacterBase*> OutCharacters;
 		TArray<AActor*> OutActorCharacters;
 
 		UGameplayStatics::GetAllActorsOfClass(GetWorld(), CurrentCharacterType, OutActorCharacters);
 
-		if(OutActorCharacters.Num() == 0)
+		for (auto& Character : OutActorCharacters)
 		{
-			// Debug logging
-			// UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found none of type %s"), *CurrentCharacterType->GetName());
-		}
-		else
-		{
-			// Debug logging
-			// UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Found %d of type %s"), OutCharacters.Num(), *CurrentCharacterType->GetName());
+			AFGCharacterBase* CastedCharacter = Cast<AFGCharacterBase>(Character);
 
-			for (auto& Character : OutActorCharacters)
+			CastedCharacter->GetHealthComponent()->Kill();
+
+			if (IsValid(Character))
 			{
-				AFGCharacterBase* CastedCharacter = Cast<AFGCharacterBase>(Character);
-
-				CastedCharacter->GetHealthComponent()->Kill();
-
-				if (IsValid(Character))
-				{
-					Character->Destroy();
-				}
+				Character->Destroy();
 			}
 		}
 	}

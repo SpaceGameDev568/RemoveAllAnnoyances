@@ -17,22 +17,24 @@ public:
 
 	ARemovalSubsystem();
 
-	FRemoveAllAnnoyances_ConfigStruct myConfig;
+	FRemoveAllAnnoyances_ConfigStruct ModConfig;
 
-	bool RemoveArtifacts;
-	bool RemoveMantaRays;
-	bool RemoveDeposits;
-	bool RemoveStingers;
-	bool RemoveGasRocks;
-	bool RemoveHogs;
-	bool RemoveCrabs;
-	bool RemoveSpitters;
-	bool RemoveDestructibleRocks;
-	bool RemoveBeans;
+	bool bShouldRemoveArtifacts;
+	bool bShouldRemoveMantaRays;
+	bool bShouldRemoveDeposits;
+	bool bShouldRemoveStingers;
+	bool bShouldRemoveGasRocks;
+	bool bShouldRemoveHogs;
+	bool bShouldRemoveCrabs;
+	bool bShouldRemoveSpitters;
+	bool bShouldRemoveDestructibleRocks;
+	bool bShouldRemoveBeans;
 
-	float DeletionInterval;
+	float RemovalInterval;
 
+	// Timer for removal function
 	FTimerHandle MemberTimerHandle;
+
 // Error Message Color
 
 	UPROPERTY(EditAnywhere)
@@ -43,7 +45,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> Reward;
 
-// Annoyances Blueprint Classes
+// Blueprint Classes for annoyances
 
 	// Mercer Sphere/Somersloop
 	UPROPERTY(EditAnywhere)
@@ -171,6 +173,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AFGCharacterBase> SpaceGiraffe;
 
+	// Remove the annoyances the user has selected
 	UFUNCTION()
 	void RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList);
 
