@@ -10,9 +10,6 @@ struct FRemoveAllAnnoyances_ConfigStruct {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite)
-    bool bShouldRemoveArtifacts{};
-
-    UPROPERTY(BlueprintReadWrite)
     bool bShouldRemoveMantaRays{};
 
     UPROPERTY(BlueprintReadWrite)
@@ -38,6 +35,12 @@ public:
 
     UPROPERTY(BlueprintReadWrite)
     bool bShouldRemoveBeans{};
+
+    UPROPERTY(BlueprintReadWrite)
+    bool bShouldRemoveBirds{};
+
+    UPROPERTY(BlueprintReadWrite)
+    bool bShouldRemoveDoggos{};
 
     UPROPERTY(BlueprintReadWrite)
     float RemovalInterval{};

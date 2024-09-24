@@ -1,12 +1,10 @@
 // Copyright 2024 Jesse Hodgson.
 
 #include "RemovalSubsystem.h"
-
 #include "FGHealthComponent.h"
 #include "RemoveAllAnnoyances.h"
 #include "RemoveAllAnnoyances_ConfigStruct.h"
 #include "Kismet/GameplayStatics.h"
-#include "FGItemPickup.h"
 #include "ModLoading/ModLoadingLibrary.h"
 #include "SessionSettings/SessionSettingsSubsystem.h"
 #include "SML/Public/Player/SMLRemoteCallObject.h"
@@ -23,7 +21,6 @@ ARemovalSubsystem::ARemovalSubsystem()
 		ModConfig = FRemoveAllAnnoyances_ConfigStruct::GetActiveConfig(GetWorld());
 	}
 
-	bShouldRemoveArtifacts         = ModConfig.bShouldRemoveArtifacts;
 	bShouldRemoveMantaRays         = ModConfig.bShouldRemoveMantaRays;
 	bShouldRemoveDeposits          = ModConfig.bShouldRemoveMantaRays;
 	bShouldRemoveStingers          = ModConfig.bShouldRemoveStingers;
@@ -33,6 +30,8 @@ ARemovalSubsystem::ARemovalSubsystem()
 	bShouldRemoveSpitters          = ModConfig.bShouldRemoveSpitters;
 	bShouldRemoveDestructibleRocks = ModConfig.bShouldRemoveDestructibleRocks;
 	bShouldRemoveBeans             = ModConfig.bShouldRemoveBeans;
+	bShouldRemoveBirds             = ModConfig.bShouldRemoveBirds;
+	bShouldRemoveDoggos             = ModConfig.bShouldRemoveDoggos;
 
 	RemovalInterval = ModConfig.RemovalInterval;
 }
@@ -58,12 +57,6 @@ void ARemovalSubsystem::BeginPlay()
 	TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList;
 
 	// Add all annoyances to list
-	if (bShouldRemoveArtifacts)
-	{
-		AnnoyanceList.Add(Wat1);
-
-		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Artifacts to the list of annoyances to remove!"));
-	}
 	if(bShouldRemoveMantaRays)
 	{
 		AnnoyanceList.Add(MantaRay);
@@ -137,6 +130,18 @@ void ARemovalSubsystem::BeginPlay()
 
 		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Beans to the list of annoyances to remove!"));
 	}
+	if (bShouldRemoveBirds)
+	{
+		CharacterAnnoyanceList.Add(Bird);
+
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Birds to the list of annoyances to remove!"));
+	}
+	if (bShouldRemoveDoggos)
+	{
+		CharacterAnnoyanceList.Add(Doggo);
+
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Doggos to the list of annoyances to remove!"));
+	}
 
 	if (AnnoyanceList.Num() == 0 && CharacterAnnoyanceList.Num() == 0)
 	{
@@ -167,14 +172,6 @@ void ARemovalSubsystem::RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TA
 
 		for (auto&  Actor: OutActors)
 		{
-			// Spawn reward for alien artifacts
-			if(CurrentActorType == Wat1)
-			{
-				FActorSpawnParameters SpawnParams;
-				SpawnParams.Owner = this;
-
-				GetWorld()->SpawnActor<AFGItemPickup>(Reward, Actor->GetActorLocation(), Actor->GetActorRotation(), SpawnParams);
-			}
 			Actor->Destroy();
 		}
 	}

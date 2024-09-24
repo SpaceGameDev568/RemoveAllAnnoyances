@@ -29,6 +29,8 @@ public:
 	bool bShouldRemoveSpitters;
 	bool bShouldRemoveDestructibleRocks;
 	bool bShouldRemoveBeans;
+	bool bShouldRemoveBirds;
+	bool bShouldRemoveDoggos;
 
 	float RemovalInterval;
 
@@ -40,16 +42,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	FLinearColor ErrorMessageColor = FLinearColor::Red;
 
-// Reward Class
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<AActor> Reward;
-
 // Blueprint Classes for annoyances
-
-	// Mercer Sphere/Somersloop
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<AActor> Wat1;
 
 	// Manta Ray
 	UPROPERTY(EditAnywhere)
@@ -172,6 +165,14 @@ public:
 	// Space Giraffe
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AFGCharacterBase> SpaceGiraffe;
+
+	// Non-Flying Bird
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AFGCharacterBase> Bird;
+
+	// Lizard Doggo
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AFGCharacterBase> Doggo;
 
 	// Remove the annoyances the user has selected
 	UFUNCTION()
