@@ -176,7 +176,7 @@ public:
 
 	// Remove the annoyances the user has selected
 	UFUNCTION()
-	void RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList);
+	void RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList) const;
 
 protected:
 

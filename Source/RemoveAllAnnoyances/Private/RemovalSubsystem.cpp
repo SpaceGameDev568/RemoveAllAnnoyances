@@ -22,7 +22,7 @@ ARemovalSubsystem::ARemovalSubsystem()
 	}
 
 	bShouldRemoveMantaRays         = ModConfig.bShouldRemoveMantaRays;
-	bShouldRemoveDeposits          = ModConfig.bShouldRemoveMantaRays;
+	bShouldRemoveDeposits          = ModConfig.bShouldRemoveDeposits;
 	bShouldRemoveStingers          = ModConfig.bShouldRemoveStingers;
 	bShouldRemoveGasRocks          = ModConfig.bShouldRemoveGasRocks;
 	bShouldRemoveHogs              = ModConfig.bShouldRemoveHogs;
@@ -31,9 +31,11 @@ ARemovalSubsystem::ARemovalSubsystem()
 	bShouldRemoveDestructibleRocks = ModConfig.bShouldRemoveDestructibleRocks;
 	bShouldRemoveBeans             = ModConfig.bShouldRemoveBeans;
 	bShouldRemoveBirds             = ModConfig.bShouldRemoveBirds;
-	bShouldRemoveDoggos             = ModConfig.bShouldRemoveDoggos;
+	bShouldRemoveDoggos            = ModConfig.bShouldRemoveDoggos;
 
 	RemovalInterval = ModConfig.RemovalInterval;
+
+
 }
 
 void ARemovalSubsystem::BeginPlay()
@@ -162,7 +164,7 @@ void ARemovalSubsystem::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
 }
 
-void ARemovalSubsystem::RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList)
+void ARemovalSubsystem::RunRemover(TArray<TSubclassOf<AActor>> AnnoyanceList, TArray<TSubclassOf<AFGCharacterBase>> CharacterAnnoyanceList) const
 {
 	TArray<AActor*> OutActors;
 
