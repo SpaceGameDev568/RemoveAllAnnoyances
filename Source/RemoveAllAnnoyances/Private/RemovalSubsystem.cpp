@@ -32,10 +32,10 @@ ARemovalSubsystem::ARemovalSubsystem()
 	bShouldRemoveBeans             = ModConfig.bShouldRemoveBeans;
 	bShouldRemoveBirds             = ModConfig.bShouldRemoveBirds;
 	bShouldRemoveDoggos            = ModConfig.bShouldRemoveDoggos;
+	bShouldRemoveSporePlants       = ModConfig.bShouldRemoveSporePlants;
 
-	RemovalInterval = ModConfig.RemovalInterval;
-
-
+	bHideScriptReminder            = ModConfig.SubsystemSettingsSection.bHideScriptReminder;
+	RemovalInterval                = ModConfig.SubsystemSettingsSection.RemovalInterval;
 }
 
 void ARemovalSubsystem::BeginPlay()
@@ -81,7 +81,6 @@ void ARemovalSubsystem::BeginPlay()
 	}
 	if (bShouldRemoveGasRocks)
 	{
-		AnnoyanceList.Add(SporeFlower);
 		AnnoyanceList.Add(GasPillar1);
 		AnnoyanceList.Add(GasPillar2);
 		AnnoyanceList.Add(GasPillar3);
@@ -144,12 +143,20 @@ void ARemovalSubsystem::BeginPlay()
 
 		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Doggos to the list of annoyances to remove!"));
 	}
+	if (bShouldRemoveSporePlants)
+	{
+		AnnoyanceList.Add(SporeFlower);
+
+		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Spore Plants to the list of annoyances to remove!"));
+	}
 
 	if (AnnoyanceList.Num() == 0 && CharacterAnnoyanceList.Num() == 0)
 	{
 		UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("No annoyances selected!"));
 
-		Cast<AFGPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->GetRemoteCallObjectOfClass<USMLRemoteCallObject>()->SendChatMessage("Remove All Annoyances: No annoyances selected! Please go to the Main Menu and select \"Mods\" from the bottom of the menu and choose \"Remove All Annoyances\". Then scroll down and select some annoyances to remove!", ErrorMessageColor);
+		if (!bHideScriptReminder){
+			Cast<AFGPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->GetRemoteCallObjectOfClass<USMLRemoteCallObject>()->SendChatMessage("Remove All Annoyances: No annoyances selected! Please go to the Main Menu and select \"Mods\" from the bottom of the menu and choose \"Remove All Annoyances\". Then scroll down and select some annoyances to remove! If you'd prefer to just disable this message, you can do that from the config as well.", ErrorMessageColor);
+		}
 	}
 	else
 	{

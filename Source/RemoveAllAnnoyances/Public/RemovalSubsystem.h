@@ -31,7 +31,9 @@ public:
 	bool bShouldRemoveBeans;
 	bool bShouldRemoveBirds;
 	bool bShouldRemoveDoggos;
+	bool bShouldRemoveSporePlants;
 
+	bool bHideScriptReminder;
 	float RemovalInterval;
 
 	// Timer for removal function
@@ -67,10 +69,6 @@ public:
 		TSubclassOf<AFGCharacterBase> ChildStinger;
 
 	// Gas Pillar Subclasses
-
-		// Spore Flower
-		UPROPERTY(EditAnywhere)
-		TSubclassOf<AActor> SporeFlower;
 
 		// Gas Pillar 1
 		UPROPERTY(EditAnywhere)
@@ -173,6 +171,10 @@ public:
 	// Lizard Doggo
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AFGCharacterBase> Doggo;
+
+	// Spore Flower
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AActor> SporeFlower;
 
 	// Remove the annoyances the user has selected
 	UFUNCTION()

@@ -4,6 +4,19 @@
 #include "Engine/Engine.h"
 #include "RemoveAllAnnoyances_ConfigStruct.generated.h"
 
+struct FRemoveAllAnnoyances_ConfigStruct_SubsystemSettingsSection;
+
+USTRUCT(BlueprintType)
+struct FRemoveAllAnnoyances_ConfigStruct_SubsystemSettingsSection {
+    GENERATED_BODY()
+public:
+    UPROPERTY(BlueprintReadWrite)
+    float RemovalInterval{};
+
+    UPROPERTY(BlueprintReadWrite)
+    bool bHideScriptReminder{};
+};
+
 /* Struct generated from Mod Configuration Asset '/RemoveAllAnnoyances/RemoveAllAnnoyances_Config' */
 USTRUCT(BlueprintType)
 struct FRemoveAllAnnoyances_ConfigStruct {
@@ -43,7 +56,10 @@ public:
     bool bShouldRemoveDoggos{};
 
     UPROPERTY(BlueprintReadWrite)
-    float RemovalInterval{};
+    bool bShouldRemoveSporePlants{};
+
+    UPROPERTY(BlueprintReadWrite)
+    FRemoveAllAnnoyances_ConfigStruct_SubsystemSettingsSection SubsystemSettingsSection{};
 
     /* Retrieves active configuration value and returns object of this struct containing it */
     static FRemoveAllAnnoyances_ConfigStruct GetActiveConfig(UObject* WorldContext) {
