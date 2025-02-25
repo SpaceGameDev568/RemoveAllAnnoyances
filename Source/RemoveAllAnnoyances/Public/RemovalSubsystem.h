@@ -1,4 +1,4 @@
-// Copyright 2024 Jesse Hodgson.
+// Copyright 2024 - 2025 Jesse Hodgson.
 
 #pragma once
 
