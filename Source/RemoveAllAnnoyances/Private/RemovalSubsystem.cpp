@@ -9,6 +9,7 @@
 #include "SessionSettings/SessionSettingsSubsystem.h"
 #include "SML/Public/Player/SMLRemoteCallObject.h"
 #include "FGPlayerController.h"
+#include "FGItemPickup.h"
 
 ARemovalSubsystem::ARemovalSubsystem()
 {
@@ -35,6 +36,7 @@ ARemovalSubsystem::ARemovalSubsystem()
 		bShouldRemoveBirds             = ModConfig.bShouldRemoveBirds;
 		bShouldRemoveDoggos            = ModConfig.bShouldRemoveDoggos;
 		bShouldRemoveSporePlants       = ModConfig.bShouldRemoveSporePlants;
+		bShouldRemoveBeetles           = ModConfig.bShouldRemoveBeetles;
 
 		bHideScriptReminder            = ModConfig.SubsystemSettingsSection.bHideScriptReminder;
 		RemovalInterval                = ModConfig.SubsystemSettingsSection.RemovalInterval;
@@ -102,12 +104,14 @@ void ARemovalSubsystem::BeginPlay()
 			CharacterAnnoyanceList.Add(CliffHog);
 			CharacterAnnoyanceList.Add(NuclearHog);
 			CharacterAnnoyanceList.Add(Hog);
+			CharacterAnnoyanceList.Add(JohnnyRocketHog);
 
 			UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Hogs to the list of annoyances to remove!"));
 		}
 		if (bShouldRemoveCrabs)
 		{
 			AnnoyanceList.Add(CrabHatcher);
+			AnnoyanceList.Add(BabyCrab);
 
 			UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Crabs to the list of annoyances to remove!"));
 		}
@@ -156,6 +160,12 @@ void ARemovalSubsystem::BeginPlay()
 
 			UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Spore Plants to the list of annoyances to remove!"));
 		}
+		if (bShouldRemoveBeetles)
+		{
+			AnnoyanceList.Add(Beetle);
+
+			UE_LOG(LogRemoveAllAnnoyances, Verbose, TEXT("Added Beetles to the list of annoyances to remove!"));
+		}
 
 		if (AnnoyanceList.Num() == 0 && CharacterAnnoyanceList.Num() == 0)
 		{
@@ -193,6 +203,15 @@ void ARemovalSubsystem::BeginPlay()
 
 			for (auto&  Actor: OutActors)
 			{
+				// If it is a Crab Hatcher, spawn the remains
+				if (CurrentActorType == CrabHatcher)
+				{
+					FActorSpawnParameters SpawnParams;
+					//SpawnParams.Owner = this;
+
+					GetWorld()->SpawnActor<AFGItemPickup>(CrabHatcherRemains, Actor->GetActorLocation(), Actor->GetActorRotation(), SpawnParams);
+				}
+
 				Actor->Destroy();
 			}
 		}

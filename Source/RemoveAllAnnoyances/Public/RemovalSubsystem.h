@@ -32,6 +32,7 @@ public:
 	bool bShouldRemoveBirds;
 	bool bShouldRemoveDoggos;
 	bool bShouldRemoveSporePlants;
+	bool bShouldRemoveBeetles;
 
 	bool bHideScriptReminder;
 	float RemovalInterval;
@@ -108,9 +109,23 @@ public:
 		UPROPERTY(EditAnywhere)
 		TSubclassOf<AFGCharacterBase> Hog;
 
-	// Crab Hatcher
-	UPROPERTY(EditAnywhere)
-    TSubclassOf<AActor> CrabHatcher;
+	   // "Johnny" the Rocket Hog
+		UPROPERTY(EditAnywhere)
+		TSubclassOf<AFGCharacterBase> JohnnyRocketHog;
+
+	// Crabs
+
+		// Crab Hatcher
+		UPROPERTY(EditAnywhere)
+    	TSubclassOf<AActor> CrabHatcher;
+
+		// Baby Crab
+		UPROPERTY(EditAnywhere)
+		TSubclassOf<AActor> BabyCrab;
+
+		// Crab Hatcher Remains to spawn
+		UPROPERTY(EditAnywhere)
+		TSubclassOf<AActor> CrabHatcherRemains;
 
     // Plasma Spitter Subclasses
 
@@ -175,6 +190,10 @@ public:
 	// Spore Flower
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> SporeFlower;
+
+	// Beetle
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AFGCharacterBase> Beetle;
 
 	// Remove the annoyances the user has selected
 	UFUNCTION()

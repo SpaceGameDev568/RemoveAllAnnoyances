@@ -61,6 +61,9 @@ public:
     UPROPERTY(BlueprintReadWrite)
     FRemoveAllAnnoyances_ConfigStruct_SubsystemSettingsSection SubsystemSettingsSection{};
 
+    UPROPERTY(BlueprintReadWrite)
+    bool bShouldRemoveBeetles{};
+
     /* Retrieves active configuration value and returns object of this struct containing it */
     static FRemoveAllAnnoyances_ConfigStruct GetActiveConfig(UObject* WorldContext) {
         FRemoveAllAnnoyances_ConfigStruct ConfigStruct{};
