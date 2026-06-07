@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
 	"Version": 2,
-	"VersionName": "2.2.1",
-	"SemVersion": "2.2.1",
+	"VersionName": "2.3.0",
+	"SemVersion": "2.3.0",
 	"FriendlyName": "Remove All Annoyances",
 	"Description": "Removes annoying things from the world.",
 	"Category": "Modding",
@@ -25,16 +25,11 @@
 	"Plugins": [
 		{
 			"Name": "SML",
-			"SemVersion": "^3.11.3",
+			"SemVersion": "^3.12.0",
 			"Enabled": true
-		},
-		{
-			"Name": "ModUpdateNotifier",
-			"Enabled": true,
-			"SemVersion": "^2.4.0"
 		}
 	],
 	"AcceptsAnyRemoteVersion": true,
-	"GameVersion": ">=455399",
+	"GameVersion": ">=491125",
 	"RequiredOnRemote": false
 }
